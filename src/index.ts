@@ -44,6 +44,11 @@ app.get('/users', async (req: Request, res: Response) => {
     res.json({ message: "success", data: users });
 });
 
+app.get("/native", async (req: Request, res: Response) => {
+  const users = await prisma.$queryRaw`SELECT * FROM user`
+  res.json({ message: "success", data: users })
+})
+
 // Update user with id
 // This is the Route for updating a user via Patch Method
 app.patch('/users/:id', async (req: Request, res: Response) => {
